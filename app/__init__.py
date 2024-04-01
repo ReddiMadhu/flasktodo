@@ -35,8 +35,6 @@ def create_app(config_class=Config):
         return jsonify({"message": "Token has expired", "error": "token_expired"}), 401
 
 
-
-
     @jwt.invalid_token_loader
     def invalid_token_callback(error):
         return (
@@ -45,7 +43,6 @@ def create_app(config_class=Config):
             ),
             401,
         )
-
 
 
     @jwt.unauthorized_loader
@@ -59,6 +56,7 @@ def create_app(config_class=Config):
             ),
             401,
         )
+    
     
     @jwt.token_in_blocklist_loader
     def token_in_blocklist_callback(jwt_header,jwt_data):

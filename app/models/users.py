@@ -1,6 +1,8 @@
 from datetime import datetime
 from app.extensions import db
 
+
+#User Schema
 class User(db.Model):
 
     tablename_ = "users"
@@ -25,6 +27,8 @@ class User(db.Model):
     def get_fullName(self):
         return f"{self.last_name}{self.first_name}"
 
+
+#Todo schema
 class Todo(db.Model):
     tablename_ = "todos",
     id = db.Column(db.Integer, primary_key=True)
@@ -34,6 +38,8 @@ class Todo(db.Model):
     user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
 
 
+
+#Token Table
 class TokenBlocklist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     jti = db.Column(db.String(500), nullable=True)  # Specify the maximum length for VARCHAR

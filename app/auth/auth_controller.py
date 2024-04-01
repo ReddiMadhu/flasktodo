@@ -98,7 +98,9 @@ def login():
         return jsonify({
             'error':str(e)
         }),HTTP_500_INTERNAL_SERVER_ERROR
-    
+
+
+#User Logout
 @bp.route('/logout', methods=['POST'])
 @jwt_required(verify_type=False)
 def logout():

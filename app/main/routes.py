@@ -14,6 +14,9 @@ def index():
 
 
 #These routes for the todos
+
+
+#GET all todos
 @bp.route('/todo', methods=['GET'])
 @jwt_required()
 def get_all_todos():
@@ -41,66 +44,9 @@ def get_all_todos():
         error_message = f"An error occurred: {str(e)}"
         return jsonify({'error': error_message}), HTTP_500_INTERNAL_SERVER_ERROR
 
-# #fetching respective todo
-
-# @bp.route('/todo/<todo_id>', methods=['GET'])
-# @jwt_required()
-# def get_one_todo(todo_id):
-#     todo = Todo.query.first()
-
-#     if not todo:
-#         return jsonify({'Message': 'You have not created any todo!'})
-
-#     todo_data = {}
-#     todo_data['id'] = todo.id
-#     todo_data['title'] = todo.title
-#     todo_data['description']=todo.description
-#     todo_data['complete'] = todo.complete
-
-#     return jsonify({'Message': todo_data})
 
 
 
-# #Adding Todo
-# @bp.route('/todo', methods=['POST'])
-# @jwt_required()
-# def create_todo():
-#     data = request.get_json()
-#     new_todo = Todo(title=data['title'],description=data['description'], complete=False,user_id=current_user.id)
-#     db.session.add(new_todo)
-#     db.session.commit()
-
-#     return jsonify({'Message': 'Task created successfully'})
-
-
-# #Completion of Todo
-# @bp.route('/todo/complete/<todo_id>', methods=['PUT'])
-# @jwt_required()
-# def complete_todo(todo_id):
-#     todo = Todo.query.filter_by(id=todo_id).first()
-
-#     if not todo:
-#         return jsonify({'Message': 'No task found, please add some'})
-
-#     todo.complete = True
-#     db.session.commit()
-#     return jsonify({'Message': 'Task has been completed'})
-
-
-# #Deleting Todo
-# @bp.route('/todo/delete/<todo_id>', methods=['DELETE'])
-# @jwt_required()
-# def delete_todo(todo_id):
-#     todo = Todo.query.filter_by(id=todo_id).first()
-
-#     if not todo:
-#         return jsonify({'Message': 'No task found'})
-
-#     db.session.delete(todo)
-#     db.session.commit()
-
-#     return jsonify({'Message': 'Task has been deleted successfully'})  
-    
 
 # Fetching respective todo
 @bp.route('/todo/<todo_id>', methods=['GET'])
@@ -144,7 +90,7 @@ def create_todo():
         return jsonify({'error': error_message}), HTTP_500_INTERNAL_SERVER_ERROR
 
 # Completion of Todo
-@bp.route('/todo/complete/<todo_id>', methods=['PUT'])
+@bp.route('/todo/<todo_id>', methods=['PUT'])
 @jwt_required()
 def complete_todo(todo_id):
     try:
@@ -161,7 +107,7 @@ def complete_todo(todo_id):
         return jsonify({'error': error_message}), HTTP_500_INTERNAL_SERVER_ERROR
 
 # Deleting Todo
-@bp.route('/todo/delete/<todo_id>', methods=['DELETE'])
+@bp.route('/todo/<todo_id>', methods=['DELETE'])
 @jwt_required()
 def delete_todo(todo_id):
     try:
