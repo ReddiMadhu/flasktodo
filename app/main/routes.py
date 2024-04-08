@@ -63,7 +63,7 @@ def get_one_todo(todo_id):
             'description': todo.description,
             'complete': todo.complete
         }
-        return jsonify({'Message': todo_data})
+        return jsonify({'message': todo_data})
 
     except Exception as e:
         error_message = f"An error occurred: {str(e)}"
@@ -122,3 +122,9 @@ def delete_todo(todo_id):
     except Exception as e:
         error_message = f"An error occurred: {str(e)}"
         return jsonify({'error': error_message}), HTTP_500_INTERNAL_SERVER_ERROR
+    
+
+
+
+
+

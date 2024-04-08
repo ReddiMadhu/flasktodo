@@ -85,7 +85,7 @@ def login():
                         "id":user.id,
                         "username":user.get_fullName(),
                         "email": user.email,
-                         "access_token":access_token}
+                        "access_token":access_token}
                         }),HTTP_200_OK
             else:
                 return jsonify({'message':'Invalid Password'}),HTTP_401_UNAUTHORIZED
